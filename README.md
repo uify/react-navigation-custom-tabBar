@@ -1,6 +1,6 @@
 # React Navigation custom tabBar
 
-Custom bottom tab bar for the route component react-navigation.
+Custom bottom tab bar for the navigation component react-navigation.
 
 ## Simple bottom TabBar
 
