@@ -2,9 +2,9 @@
 
 Custom bottom tab bar for the route component react-navigation.
 
-## Simple
+## Simple bottom TabBar
 
-<img src="https://i.imgur.com/tXijy0q.png" alt="simple react navigation tab bar" width="250"/>
+<img src="https://i.imgur.com/tXijy0q.png" alt="simple react navigation tab bar" width="300"/>
 
 Todo: 
 
