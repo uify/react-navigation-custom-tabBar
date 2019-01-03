@@ -9,11 +9,13 @@ import {
   createDrawerNavigator
 } from 'react-navigation';
 
-import Home from './Views/Home';
-import Brand from './Views/Brand';
-import Bag from './Views/Bag';
-import Wishlist from './Views/Wishlist';
-import Profile from './Views/Profile';
+import Home from './views/Home';
+import Brand from './views/Brand';
+import Bag from './views/Bag';
+import Wishlist from './views/Wishlist';
+import Profile from './views/Profile';
+
+import TabBar from './components/tabBar';
 
 
 /* declaration of stacks */
@@ -60,52 +62,14 @@ const Tabs = createBottomTabNavigator(
         return <Ionicons name={iconName} size={horizontal ? 20 : 25} color={tintColor} />;
       },
     }),
-    tabBarComponent: (props) => {
-        const {
-            navigation: {state: {index, routes}},
-            style,
-            activeTintColor,
-            inactiveTintColor,
-            renderIcon,
-            jumpTo
-        } = props;
-        return (
-            <SafeAreaView style={{
-                flexDirection: 'row',
-                height: 50,
-                width: '100%',
-                ...style
-            }}>
-                {
-                    routes.map((route, idx) => (
-                        <SafeAreaView
-                            key={route.key}
-                            style={{
-                                flex: 1,
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            <TouchableWithoutFeedback
-                                onPress={() => jumpTo(route.key)}
-                            >
-                              <View style = {route.key == 'Bag' ? styles.customIcon : styles.defaultIcon}>
-                                {renderIcon({
-                                    route,
-                                    focused: index === idx,
-                                    tintColor: index === idx ? activeTintColor : inactiveTintColor
-                                })}
-                              </View>
-                            </TouchableWithoutFeedback>
-                        </SafeAreaView>
-                    ))
-                }
-            </SafeAreaView>
-        );
-    },
+    tabBarComponent: (props) => <TabBar {...props}/>,
     tabBarOptions: {
-        showLabel: false,
-        activeTintColor: '#000',
+        tabFeatured: 'Bag',
+        backgroundFeaturedIcon: '#D7465A',
+        activeFeaturedTintColor: 'skyblue',
+        inactiveFeatureTintColor: 'white',
+        showLabel: true,
+        activeTintColor: '#D7465A',
         inactiveTintColor: '#E1E3DB',
         style: {
             height: 80,
@@ -116,20 +80,6 @@ const Tabs = createBottomTabNavigator(
         tabStyle: {}
     }
 });
-
-const styles = StyleSheet.create({
-  customIcon: {
-    backgroundColor: '#D7465A',
-    height: 60,
-    width: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-    transform: [
-      { translateY: -20}
-    ]
-  },
-})
 
 export default createAppContainer(createDrawerNavigator(
   {
